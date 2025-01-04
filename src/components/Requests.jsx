@@ -1,9 +1,69 @@
-import React from 'react'
+import axios from "axios";
+import React,{useEffect} from "react";
+import { BASE_URL } from "../utils/constants";
+import { useDispatch, useSelector } from "react-redux";
+import { addRequests } from "../utils/requestSlice";
 
 const Requests = () => {
-  return (
-    <div>Requests</div>
-  )
-}
+    const requests = useSelector((store) => store.requests);
+    const dispatch = useDispatch();
 
-export default Requests
+  const fetchRequests = async () => {
+    try {
+      const res = await axios.get(BASE_URL + "/user/requests/received", {
+        withCredentials: true,
+      });
+      dispatch(addRequests(res?.data?.data))
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    fetchRequests();
+  },[])
+  
+  if (!requests) return;
+  if (requests.length === 0)
+    return <h1 className="text-bold text-2xl"> No Requests found</h1>;
+
+  return (
+    <div className="text-center my-10">
+      <h1 className="text-bold text-3xl text-white">Requests</h1>
+      {requests.map((request,index) => {
+        const { firstName, lastName, age, gender, photoUrl, about } =
+        request.fromUserId;
+        return (
+          firstName &&
+          lastName && (
+            <div key={index} className="p-4 justify-between items-center flex m-4 border rounded-lg bg-base-200 w-2/3 mx-auto">
+              <div>
+                {photoUrl && (
+                  <img
+                    className="w-20 h-20 rounded-full"
+                    src={photoUrl}
+                    alt="photo"
+                  />
+                )}
+              </div>
+              <div className="text-left mx-4">
+                {firstName && lastName && (
+                  <h2 className="font-bold text-xl">
+                    {firstName + " " + lastName}
+                  </h2>
+                )}
+                {age && gender && <p className="">{age + ", " + gender}</p>}
+                {about && <p className="">{about}</p>}
+              </div>
+              <div>
+              <button className="btn btn-active btn-primary m-2">Reject</button>
+              <button className="btn btn-active btn-secondary mx-2">Accept</button>
+              </div>
+            </div>
+          )
+        );
+      })}
+    </div>
+  );
+};
+
+export default Requests;

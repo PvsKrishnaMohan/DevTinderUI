@@ -9,11 +9,12 @@ const Connections = () => {
   const dispatch = useDispatch();
 
   const fetchConnections = async () => {
+    
     try {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
       });
-      console.log(res.data, "res");
+    //   console.log(res.data, "res");
       dispatch(addConnections(res.data));
     } catch (err) {
       console.log(err, "err");
@@ -31,13 +32,13 @@ const Connections = () => {
   return (
     <div className="text-center my-10">
       <h1 className="text-bold text-3xl text-white">Connections</h1>
-      {connections.map((connection) => {
+      {connections.map((connection,index) => {
         const { firstName, lastName, age, gender, photoUrl, about } =
           connection;
         return (
           firstName &&
           lastName && (
-            <div className="p-4 flex m-4 border rounded-lg bg-base-200 w-1/2 mx-auto">
+            <div key={index} className="p-4 flex m-4 border rounded-lg bg-base-200 w-1/2 mx-auto">
               <div>
                 {photoUrl && (
                   <img

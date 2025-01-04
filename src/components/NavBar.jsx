@@ -11,15 +11,19 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleLogout = async() => {
-    try{
-     const res = await axios.post(BASE_URL + "/logout", {}, {withCredentials : true});
+  const handleLogout = async () => {
+    try {
+      const res = await axios.post(
+        BASE_URL + "/logout",
+        {},
+        { withCredentials: true }
+      );
       dispatch(removeUser());
       return navigate("/login");
-    }catch(err){
-      console.error(err.message)
+    } catch (err) {
+      console.error(err.message);
     }
-  }
+  };
 
   return (
     <div className="navbar bg-base-300">
@@ -52,7 +56,10 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
-                <Link to = "/connections"> Connections</Link>
+                <Link to="/connections"> Connections</Link>
+              </li>
+              <li>
+                <Link to="/requests"> Requests</Link>
               </li>
               <li>
                 <a onClick={handleLogout}>Logout</a>

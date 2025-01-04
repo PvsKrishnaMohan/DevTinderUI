@@ -9,7 +9,7 @@ const Connections = () => {
   const dispatch = useDispatch();
 
   const fetchConnections = async () => {
-    
+
     try {
       const res = await axios.get(BASE_URL + "/user/connections", {
         withCredentials: true,
@@ -27,7 +27,7 @@ const Connections = () => {
 
   if (!connections) return;
   if (connections.length === 0)
-    return <h1 className="text-bold text-2xl"> No connections found</h1>;
+    return <h1 className="flex justify-center my-10 text-bold text-2xl"> No connections found</h1>;
 
   return (
     <div className="text-center my-10">

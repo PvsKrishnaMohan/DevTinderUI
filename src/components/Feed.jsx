@@ -18,12 +18,17 @@ const Feed = () => {
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
       console.error(err?.response?.data);
+      return <h1>some thing went wrong!</h1>
     }
   };
   useEffect(()=> {
     getFeed();
   }, []);
 
+  if(!feed) return;
+  if(feed.length <=0){
+    return <h1 className="flex justify-center py-10">No New users found</h1>;
+  }
   return (
     feed && (
       <div className="flex justify-center my-8">

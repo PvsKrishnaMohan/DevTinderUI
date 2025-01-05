@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequests } from "../utils/requestSlice";
+import NoReq from "./NoReq";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
@@ -37,7 +38,14 @@ const Requests = () => {
 
   if (!requests) return;
   if (requests.length === 0)
-    return <h1 className=" flex justify-center my-10 text-bold text-2xl"> No Requests found</h1>;
+    return (
+      <div>
+        <h1 className=" flex justify-center my-10 text-bold text-2xl p-8">
+          No Requests found
+        </h1>
+        <NoReq className=" border-shadow" />
+      </div>
+    );
 
   return (
     <div className="text-center my-10">

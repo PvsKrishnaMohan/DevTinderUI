@@ -14,11 +14,10 @@ const Feed = () => {
     if (feed) return;
     try {
       const res = await axios.get(BASE_URL + "/feed", { withCredentials: true });
-      // console.log(res?.data?.data,"res")
+      // console.log(res.data,"res")
       dispatch(addFeed(res?.data?.data));
     } catch (err) {
       console.error(err?.response?.data);
-      return <h1>some thing went wrong!</h1>
     }
   };
   useEffect(()=> {
@@ -32,7 +31,7 @@ const Feed = () => {
   return (
     feed && (
       <div className="flex justify-center my-8">
-        <UserCard user={feed[3]}/>
+        <UserCard user={feed[0]}/>
       </div>
     )
   );

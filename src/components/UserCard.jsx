@@ -17,7 +17,7 @@ const UserCard = ({ user }) => {
       );
       dispatch(removeUserFromFeed(userId));
     } catch (err) {
-      console.log("Error...");
+      // console.log("Error...");
     }
   };
   return (
@@ -26,11 +26,11 @@ const UserCard = ({ user }) => {
         <img src={photoUrl} alt="Photo" />
       </figure>
       <div className="card-body">
-        {firstName && lastName && (
+        
           <h2 className="card-title">
             {firstName} {lastName}
           </h2>
-        )}
+        
         {/* <h2 className="card-title">{firstName} {lastName}</h2> */}
         {age && gender && (
           <p>

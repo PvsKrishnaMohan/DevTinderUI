@@ -17,7 +17,6 @@ const UserCard = ({ user }) => {
         {},
         { withCredentials: true }
       );
-      console.log(res.data.data,'res')
       dispatch(removeUserFromFeed(userId));
     } catch (err) {
       // console.log("Error...");

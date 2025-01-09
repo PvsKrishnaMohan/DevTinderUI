@@ -51,13 +51,13 @@ const Requests = () => {
     <div className="text-center my-10">
       <h1 className="text-bold text-3xl text-white">Requests</h1>
       {requests.map((request, index) => {
-        const { firstName, lastName, age, gender, photoUrl, about } =
+        const { firstName, lastName, age, gender, photoUrl, about ,_id} =
           request.fromUserId;
         return (
           firstName &&
           lastName && (
             <div
-              key={index}
+              key={_id}
               className="p-4 justify-between items-center flex m-4 border rounded-lg bg-base-200 w-2/3 mx-auto"
             >
               <div>

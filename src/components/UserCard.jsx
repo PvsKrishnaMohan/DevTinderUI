@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { BASE_URL } from "../utils/constants";
+import { removeUserFromFeed } from "../utils/feedSlice";
 
 const UserCard = ({ user }) => {
   const { firstName, lastName, age, photoUrl, skills, about, gender, _id } =
@@ -9,12 +10,14 @@ const UserCard = ({ user }) => {
   const dispatch = useDispatch();
 
   const handleSendRequest = async (status, userId) => {
+    console.log(userId,"userId")
     try {
       const res = await axios.post(
         BASE_URL + "/request/send/" + status + "/" + userId,
         {},
         { withCredentials: true }
       );
+      console.log(res.data.data,'res')
       dispatch(removeUserFromFeed(userId));
     } catch (err) {
       // console.log("Error...");
@@ -26,11 +29,10 @@ const UserCard = ({ user }) => {
         <img src={photoUrl} alt="Photo" />
       </figure>
       <div className="card-body">
-        
-          <h2 className="card-title">
-            {firstName} {lastName}
-          </h2>
-        
+        <h2 className="card-title">
+          {firstName} {lastName}
+        </h2>
+
         {/* <h2 className="card-title">{firstName} {lastName}</h2> */}
         {age && gender && (
           <p>

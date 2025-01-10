@@ -25,7 +25,7 @@ const Login = () => {
         { withCredentials: true }
       ); // if we dont use withCredentials while using axios we wont get token back from backend
       dispatch(addUser(resp.data));
-      return navigate("/");
+      return navigate("/feed");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong!");
       console.error(err);

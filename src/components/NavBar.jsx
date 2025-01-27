@@ -6,6 +6,8 @@ import { removeUser } from "../utils/userSlice";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
 
+import GradientText from "./GradientText";
+
 const NavBar = () => {
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
@@ -29,13 +31,23 @@ const NavBar = () => {
     <div className="navbar bg-base-300">
       <div className="flex-1 mx-2">
         <Link to="/feed" className="btn btn-ghost text-xl">
-          <img className ="w-10 h-30" src ='https://res.cloudinary.com/krishnamohan479/image/upload/v1735716824/devTinder_logo-removebg-preview_1_1_mvjxjz.png'/>
-          Dev Tinder
+          <img
+            className="w-10 h-30"
+            src="https://res.cloudinary.com/krishnamohan479/image/upload/v1735716824/devTinder_logo-removebg-preview_1_1_mvjxjz.png"
+          />
+          <GradientText
+            colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+            animationSpeed={10}
+            showBorder={false}
+            className="custom-class"
+          >
+            DevUp
+          </GradientText>
         </Link>
       </div>
       {user && (
         <div className="flex-none gap-1">
-          <div className="form-control text-lime-500">Welcome, {user.firstName}</div>
+          <div className="form-control text-lime-500">Hi, {user.firstName}</div>
           <div className="dropdown dropdown-end mx-5 ">
             <div
               tabIndex={0}

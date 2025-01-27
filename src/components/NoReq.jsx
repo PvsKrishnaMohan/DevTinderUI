@@ -16,6 +16,7 @@ const NoReq = () => {
   const filePath = "https://res.cloudinary.com/krishnamohan479/image/upload/v1736020712/1_xqlasq.glb";
 
   return (
+    <>
     <Canvas camera={{ position: [0, 0, 100], fov: 50 }}>
       {/* Lighting */}
       <ambientLight intensity={0.5} />
@@ -27,6 +28,8 @@ const NoReq = () => {
       {/* Controls */}
       <OrbitControls />
     </Canvas>
+    <h6 className='text-center text-slate-400'>feel free to rotate me</h6>
+    </>
   );
 };
 

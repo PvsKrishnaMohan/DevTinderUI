@@ -4,6 +4,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { addRequests, removeRequests } from "../utils/requestSlice";
 import NoReq from "./NoReq";
+import GradientText from "./GradientText";
 
 const Requests = () => {
   const requests = useSelector((store) => store.requests);
@@ -32,18 +33,32 @@ const Requests = () => {
       console.error(err);
     }
   };
+
   useEffect(() => {
     fetchRequests();
   }, []);
 
-  if (!requests) return;
+  if (!requests) return null;
   if (requests.length === 0)
     return (
-      <div>
-        <h1 className=" flex justify-center my-10 text-bold text-2xl p-8">
-          No Requests found
-        </h1>
-        <NoReq className=" border-shadow" />
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="flex justify-center">
+          <img
+            src="https://res.cloudinary.com/krishnamohan479/image/upload/v1737921307/3dicons-snowman-front-color_yt4fxf.png"
+            className="w-1/2 max-w-full"
+            alt="No Requests"
+          />
+        </div>
+        <div className="flex justify-center my-10 text-bold text-2xl p-8">
+          <GradientText
+            colors={["#FF512F", "#FF0000", "#FF5F6D", "#FF416C", "#FF512F"]}
+            animationSpeed={5}
+            showBorder={false}
+            className="custom-class"
+          >
+            No Requests Found
+          </GradientText>
+        </div>
       </div>
     );
 
@@ -51,7 +66,7 @@ const Requests = () => {
     <div className="text-center my-10">
       <h1 className="text-bold text-3xl text-white">Requests</h1>
       {requests.map((request, index) => {
-        const { firstName, lastName, age, gender, photoUrl, about ,_id} =
+        const { firstName, lastName, age, gender, photoUrl, about, _id } =
           request.fromUserId;
         return (
           firstName &&
@@ -75,8 +90,8 @@ const Requests = () => {
                     {firstName + " " + lastName}
                   </h2>
                 )}
-                {age && gender && <p className="">{age + ", " + gender}</p>}
-                {about && <p className="">{about}</p>}
+                {age && gender && <p>{age + ", " + gender}</p>}
+                {about && <p>{about}</p>}
               </div>
               <div>
                 <button

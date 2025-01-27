@@ -3,6 +3,7 @@ import UserCard from "./userCard";
 import { useDispatch } from "react-redux";
 import { BASE_URL } from "../utils/constants";
 import axios from "axios";
+import MyProfileCard from "./MyProfileCard";
 
 const EditProfile = ({ user }) => {
   const [firstName, setFirstName] = useState(user.firstName);
@@ -23,11 +24,10 @@ const EditProfile = ({ user }) => {
         { firstName, lastName, age, gender, photoUrl, about },
         { withCredentials: true }
       );
-    //   console.log("Saving profile..."); // Add this line
       setShowToast(true);
       setTimeout(() => {
         setShowToast(false);
-      }, 3000);
+      }, 2000);
       dispatch(addUser(res?.data?.data));
     } catch (err) {
       setError(err?.response?.data);
@@ -98,7 +98,7 @@ const EditProfile = ({ user }) => {
                   <div className="label"></div>
                 </label>
 
-                <label className="form-control w-full max-w-xs">
+                {/* <label className="form-control w-full max-w-xs">
                   <div className="label">
                     <span className="label-text">Gender</span>
                   </div>
@@ -110,6 +110,46 @@ const EditProfile = ({ user }) => {
                     onChange={(e) => setGender(e.target.value)}
                   />
                   <div className="label"></div>
+                </label> */}
+                <label className="form-control w-full max-w-xs flex flex-col justify-evenly">
+                  <div className="label">
+                    <span className="label-text">Gender</span>
+                  </div>
+                  <div className="flex flex-row pb-3">
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="male"
+                        checked={gender === "male"}
+                        onChange={(e) => setGender(e.target.value)}
+                        className="radio radio-primary mr-2"
+                      />
+                      <span className="pr-4">Male</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="female"
+                        checked={gender === "female"}
+                        onChange={(e) => setGender(e.target.value)}
+                        className="radio radio-primary mr-2 ml-2"
+                      />
+                      <span className="pr-5">Female</span>
+                    </label>
+                    <label className="flex items-center space-x-2">
+                      <input
+                        type="radio"
+                        name="gender"
+                        value="others"
+                        checked={gender === "others"}
+                        onChange={(e) => setGender(e.target.value)}
+                        className="radio radio-primary"
+                      />
+                      <span className="pr-3">Other</span>
+                    </label>
+                  </div>
                 </label>
 
                 <label className="form-control w-full max-w-xs">
@@ -135,9 +175,10 @@ const EditProfile = ({ user }) => {
             </div>
           </div>
         </div>
-        <UserCard
+
+        {/* <UserCard
           user={{ firstName, lastName, age, gender, about, photoUrl }}
-        />
+        /> */}
       </div>
       {showToast && (
         <div className="toast toast-top toast-center">

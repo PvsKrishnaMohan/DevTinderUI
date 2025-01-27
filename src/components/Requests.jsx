@@ -73,7 +73,7 @@ const Requests = () => {
           lastName && (
             <div
               key={_id}
-              className="p-4 justify-between items-center flex m-4 border rounded-lg bg-base-200 w-2/3 mx-auto"
+              className="p-4 justify-between items-center flex m-4 border rounded-lg bg-base-200 w-full md:w-2/3 mx-auto shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               <div>
                 {photoUrl && (

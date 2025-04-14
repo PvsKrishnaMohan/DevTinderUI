@@ -87,7 +87,7 @@ const Connections = () => {
               <div className="text-left mx-4">
                 {firstName && lastName && (
                   <h2 className="font-bold text-xl text-lime-500">
-                    {" "}
+                  
                     {/* Change color here */}
                     {firstName + " " + lastName}
                   </h2>

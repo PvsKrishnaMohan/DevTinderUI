@@ -4,7 +4,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profile";
 import Feed from "./components/Feed";
 import Test from "./components/Test";
-import Connections from "./components/connections";
+import Connections from "./components/Connections";
 import Requests from "./components/requests";
 import MyProfileCard from "./components/MyProfileCard";
 import { Provider } from "react-redux";

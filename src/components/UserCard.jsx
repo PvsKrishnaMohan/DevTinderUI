@@ -32,7 +32,6 @@ const UserCard = ({ user }) => {
           {firstName} {lastName}
         </h2>
 
-        {/* <h2 className="card-title">{firstName} {lastName}</h2> */}
         {age && gender && (
           <p>
             {age} , {gender}
